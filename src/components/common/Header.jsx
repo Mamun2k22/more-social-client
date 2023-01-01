@@ -153,7 +153,7 @@ const Header = () => {
   );
 
   return (
-    <div className="bg-white mb-8 h-16 overflow-hidden">
+    <div className="bg-white mb-8 h-16 ">
       <div className="w-11/12 mx-auto navbar justify-between p-0">
         <div className="">
           <Link to="/feed" className="btn btn-ghost normal-case text-xl ">
@@ -171,6 +171,7 @@ const Header = () => {
           <div className="flex-none">
             <ul className="menu menu-horizontal px-1 nav-menu">{menuItems}</ul>
           </div>
+          
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
