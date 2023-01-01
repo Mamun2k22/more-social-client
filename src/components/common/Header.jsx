@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
+
   let activeStyle = {
     borderBottom: "2px solid #313132",
-    backgroundColor: "#ffffff00",
     borderRadius: "0",
   };
   const menuItems = (
     <>
       <li>
-        <div className="flex flex-col justify-center items-center gap-0">
+        <NavLink
+          to="/feed/home"
+          className="flex flex-col justify-center items-center gap-0"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -28,15 +39,15 @@ const Header = () => {
 
           <NavLink
             className="text-sm hidden md:block"
-            to="/home"
+            to="/feed/home"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Home
           </NavLink>
-        </div>
+        </NavLink>
       </li>
       <li>
-        <div className="flex flex-col justify-center items-center gap-0">
+        <NavLink to="/feed/video" className="flex flex-col justify-center items-center gap-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -53,15 +64,15 @@ const Header = () => {
 
           <NavLink
             className="text-sm hidden md:block"
-            to="/video"
+            to="/feed/video"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Video
           </NavLink>
-        </div>
+        </NavLink>
       </li>
       <li>
-        <div className="flex flex-col justify-center items-center gap-0">
+        <NavLink to="/feed/reels" className="flex flex-col justify-center items-center gap-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -79,15 +90,15 @@ const Header = () => {
 
           <NavLink
             className="text-sm hidden md:block"
-            to="/reels"
+            to="/feed/reels"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Reels
           </NavLink>
-        </div>
+        </NavLink>
       </li>
       <li>
-        <div className="flex flex-col justify-center items-center gap-0">
+        <NavLink to="/feed/messaging" className="flex flex-col justify-center items-center gap-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -105,15 +116,15 @@ const Header = () => {
 
           <NavLink
             className="text-sm hidden md:block"
-            to="/messaging"
+            to="/feed/messaging"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Messaging
           </NavLink>
-        </div>
+        </NavLink>
       </li>
       <li>
-        <div className="flex flex-col justify-center items-center gap-0">
+        <NavLink to="/feed/notifications" className="flex flex-col justify-center items-center gap-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -131,21 +142,23 @@ const Header = () => {
 
           <NavLink
             className="text-sm hidden md:block"
-            to="/notifications"
+            to="/feed/notifications"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Notifications
           </NavLink>
-        </div>
+        </NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="bg-white mb-8">
+    <div className="bg-white mb-8 h-16 overflow-hidden">
       <div className="w-11/12 mx-auto navbar justify-between p-0">
         <div className="">
-          <Link className="btn btn-ghost normal-case text-xl ">MORE</Link>
+          <Link to="/feed" className="btn btn-ghost normal-case text-xl ">
+            MORE
+          </Link>
           <div className="form-control hidden md:block lg:block">
             <input
               type="text"
@@ -175,7 +188,11 @@ const Header = () => {
                 <Link>Settings</Link>
               </li>
               <li>
-                <Link>Logout</Link>
+                <Link>
+                  <Link to="/login" onClick={handleLogOut} className="">
+                    Log Out
+                  </Link>
+                </Link>
               </li>
             </ul>
           </div>

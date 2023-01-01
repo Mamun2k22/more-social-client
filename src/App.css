@@ -40,3 +40,28 @@
 .right-side-nav {
   width: 30%;
 }
+
+.btn-ghost {
+  border-width: 1px;
+  border-color: transparent;
+  background-color: transparent;
+  color: currentColor;
+}
+.btn-ghost:hover,
+.btn-ghost.btn-active {
+  --tw-border-opacity: 0;
+  background-color: #ffffff00;
+  --tw-bg-opacity: 0.2;
+}
+.btn-ghost:hover,
+.btn-ghost.btn-active {
+  --tw-border-opacity: 0;
+  background-color: #fff;
+  --tw-bg-opacity: 0.2;
+}
+.btn-ghost:focus-visible {
+  outline: 2px solid currentColor;
+}
+.drawer-toggle:focus-visible ~ .drawer-content .drawer-button.btn-ghost {
+  outline: 2px solid currentColor;
+}
